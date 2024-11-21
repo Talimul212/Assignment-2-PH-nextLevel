@@ -1,5 +1,3 @@
-# Create the README.md content as a formatted Markdown file
-readme_md_content = """
 # Assignment 2
 
 This is a TypeScript-based Node.js project with Express.js for server-side development. The project includes tools for linting, code formatting, and hot-reloading for development ease.
