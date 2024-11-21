@@ -30,7 +30,3 @@ Ensure you have the following installed on your system:
    git clone <repository-url>
    cd assignment-2
    
-src/
-├── server.ts       # Entry point of the application
-├── ...             # Additional source files
-dist/               # Compiled JavaScript files (generated after build)
