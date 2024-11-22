@@ -5,12 +5,16 @@ const app: Application = express();
 
 //parsers
 app.use(express.json());
+app.use(express.text());
 app.use(cors());
 
 app.use('/api/bike', bikeRoutes);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
+  res.send({
+    status: true,
+    message: 'Server Live ⚡',
+  });
 });
 
 export default app;

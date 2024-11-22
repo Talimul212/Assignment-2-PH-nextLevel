@@ -10,7 +10,7 @@ const getAllBikesFromDB = async (filter: Partial<IBike> = {}) => {
   return await Bike.find(filter);
 };
 const getSingleBikeFromDB = async (id: string) => {
-  const result = await Bike.aggregate([{ $match: { id } }]);
+  const result = await Bike.findById(id);
   return result;
 };
 

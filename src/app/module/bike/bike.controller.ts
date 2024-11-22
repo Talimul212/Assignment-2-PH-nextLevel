@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 
 import { BikeServices } from './bike.service';
+import { bikeValidationSchema, handleZodError } from './bike.zod.validation';
+import { z } from 'zod';
 
 const createBike = async (req: Request, res: Response) => {
   try {
-    //   const zodParsedData = studentValidationSchema.parse(studentData);
+    const zodParsedData = bikeValidationSchema.parse(req.body);
 
-    const result = await BikeServices.createBikeIntoDB(req.body);
+    const result = await BikeServices.createBikeIntoDB(zodParsedData);
 
     res.status(200).json({
       message: 'Bike  created succesfully',
@@ -15,9 +17,9 @@ const createBike = async (req: Request, res: Response) => {
     });
   } catch (err: any) {
     res.status(500).json({
+      message: 'Validation failed',
       success: false,
-      message: err.message || 'something went wrong',
-      error: err,
+      error: handleZodError(err),
     });
   }
 };
@@ -37,13 +39,13 @@ const getAllBikes = async (req: Request, res: Response) => {
     const result = await BikeServices.getAllBikesFromDB(filter);
 
     res.status(200).json({
-      success: true,
-      message: 'BSikes retrieved succesfully',
+      message: 'Bikes retrieved succesfully',
+      status: true,
       data: result,
     });
   } catch (err: any) {
     res.status(500).json({
-      success: false,
+      status: false,
       message: err.message || 'something went wrong',
       error: err,
     });
@@ -53,18 +55,19 @@ const getAllBikes = async (req: Request, res: Response) => {
 const getSingleBike = async (req: Request, res: Response) => {
   try {
     const { bikeId } = req.params;
+    console.log(bikeId);
 
     const result = await BikeServices.getSingleBikeFromDB(bikeId);
 
     res.status(200).json({
-      success: true,
       message: 'Bkies retrieved succesfully',
+      status: true,
       data: result,
     });
   } catch (err: any) {
     res.status(500).json({
-      success: false,
       message: err.message || 'something went wrong',
+      status: false,
       error: err,
     });
   }
@@ -72,20 +75,19 @@ const getSingleBike = async (req: Request, res: Response) => {
 
 const updateBike = async (req: Request, res: Response) => {
   try {
-    const { productId } = req.params;
+    const { bikeId } = req.params;
     const updateData = req.body;
-    const result = await BikeServices.updateBikeIntoDB(productId, updateData);
-
-    res.send({
-      success: true,
+    const result = await BikeServices.updateBikeIntoDB(bikeId, updateData);
+    res.status(200).json({
       message: 'Bike updated successfully',
-      result,
+      status: true,
+      data: result,
     });
-  } catch (error) {
-    res.send({
-      success: false,
-      message: 'Something went wrong',
-      error,
+  } catch (err: any) {
+    res.status(400).json({
+      status: false,
+      message: err.message || 'something went wrong',
+      error: err,
     });
   }
 };
@@ -96,14 +98,14 @@ const deleteBike = async (req: Request, res: Response) => {
     const result = await BikeServices.deleteBikeFromDB(bikeId);
 
     res.status(200).json({
-      success: true,
-      message: 'product is deleted succesfully',
-      data: result,
+      message: 'Bike  deleted succesfully',
+      status: true,
+      data: {},
     });
   } catch (err: any) {
     res.status(500).json({
-      success: false,
       message: err.message || 'something went wrong',
+      status: false,
       error: err,
     });
   }
