@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 
 import { BikeServices } from './bike.service';
 import { bikeValidationSchema, handleZodError } from './bike.zod.validation';
-import { z } from 'zod';
 
 const createBike = async (req: Request, res: Response) => {
   try {
@@ -55,7 +54,6 @@ const getAllBikes = async (req: Request, res: Response) => {
 const getSingleBike = async (req: Request, res: Response) => {
   try {
     const { bikeId } = req.params;
-    console.log(bikeId);
 
     const result = await BikeServices.getSingleBikeFromDB(bikeId);
 

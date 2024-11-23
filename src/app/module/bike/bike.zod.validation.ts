@@ -35,9 +35,9 @@ export const handleZodError = (error: any) => {
       message: err.message,
       code: err.code,
       path: err.path,
-      ...(err.code === 'too_small' && { minimum: err.minimum }), // Include minimum if 'too_small' error
-      ...(err.code === 'invalid_enum_value' && { options: err.options }), // Include enum options for 'invalid_enum_value'
-      ...(err.received && { received: err.received }), // Include received value for errors like 'invalid_type'
+      ...(err.code === 'too_small' && { minimum: err.minimum }),
+      ...(err.code === 'invalid_enum_value' && { options: err.options }),
+      ...(err.received && { received: err.received }),
     })),
 
     stack: error.stack || 'No stack trace available',
