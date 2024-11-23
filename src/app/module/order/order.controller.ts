@@ -11,9 +11,7 @@ const createOrder = async (req: Request, res: Response) => {
       ...parsedData,
       product: new Types.ObjectId(parsedData.product),
     };
-
     const result = await OrderServices.createOrderIntoDB(orderData);
-
     res.status(201).json({
       message: 'Order created successfully',
       status: true,

@@ -56,7 +56,12 @@ const getSingleBike = async (req: Request, res: Response) => {
     const { bikeId } = req.params;
 
     const result = await BikeServices.getSingleBikeFromDB(bikeId);
-
+    if (!result) {
+      res.status(404).json({
+        message: 'Bike not found',
+        status: false,
+      });
+    }
     res.status(200).json({
       message: 'Bkies retrieved succesfully',
       status: true,
@@ -76,6 +81,12 @@ const updateBike = async (req: Request, res: Response) => {
     const { bikeId } = req.params;
     const updateData = req.body;
     const result = await BikeServices.updateBikeIntoDB(bikeId, updateData);
+    if (!result) {
+      res.status(404).json({
+        message: 'updated bike id not found',
+        status: false,
+      });
+    }
     res.status(200).json({
       message: 'Bike updated successfully',
       status: true,
@@ -94,7 +105,12 @@ const deleteBike = async (req: Request, res: Response) => {
     const { bikeId } = req.params;
 
     const result = await BikeServices.deleteBikeFromDB(bikeId);
-
+    if (!result) {
+      res.status(404).json({
+        message: 'deleted bike id not found',
+        status: false,
+      });
+    }
     res.status(200).json({
       message: 'Bike  deleted succesfully',
       status: true,

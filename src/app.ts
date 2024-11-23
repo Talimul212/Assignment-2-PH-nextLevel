@@ -9,9 +9,10 @@ app.use(express.json());
 app.use(express.text());
 app.use(cors());
 
+//route call
 app.use('/api/bike', bikeRoutes);
 app.use('/api/orders', orderRoutes);
-
+//server call
 app.get('/', (req: Request, res: Response) => {
   res.send({
     status: true,
