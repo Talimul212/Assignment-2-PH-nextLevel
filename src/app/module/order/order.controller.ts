@@ -1,9 +1,16 @@
 import { Request, Response } from 'express';
 import { OrderServices } from './order.service';
+import { orderValidationSchema } from './order.zod.validation';
+import { Types } from 'mongoose';
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const orderData = req.body;
+    const parsedData = orderValidationSchema.parse(req.body);
+
+    const orderData = {
+      ...parsedData,
+      product: new Types.ObjectId(parsedData.product),
+    };
 
     const result = await OrderServices.createOrderIntoDB(orderData);
 
@@ -14,13 +21,12 @@ const createOrder = async (req: Request, res: Response) => {
     });
   } catch (err: any) {
     res.status(400).json({
-      message: err.message || 'Failed to create order',
+      message: err.message || 'Validation failed',
       status: false,
       error: err,
     });
   }
 };
-
 const getRevenue = async (_req: Request, res: Response) => {
   try {
     const totalRevenue = await OrderServices.calculateRevenue();
