@@ -51,12 +51,12 @@ Before running the project, make sure you have the following installed:
    ```bash
    git clone <repository-url>
    cd assignment-2
-npm i cors dotenv express  mongoose "ts-node-dev zod...
+   npm i cors dotenv express  mongoose "ts-node-dev zod...
    
 ### Bike API:
-**GET**,**POST** https://assignment-2-nine-omega.vercel.app/api/bike
-**DELETE**,**UPDATE** https://assignment-2-nine-omega.vercel.app/api/bike/:bikeId
-**Query GET** https://assignment-2-nine-omega.vercel.app/api/bike?searchTerm=name or brand or category
+    **GET**,**POST**= https://assignment-2-nine-omega.vercel.app/api/bike
+    **DELETE**,**UPDATE**=https://assignment-2-nine-omega.vercel.app/api/bike/:bikeId
+    **Query GET**= https://assignment-2-nine-omega.vercel.app/api/bike?searchTerm=name or brand or category
 
 
 ### Orders API:
