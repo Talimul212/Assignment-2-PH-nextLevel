@@ -28,3 +28,27 @@ Ensure you have the following installed on your system:
    git clone <repository-url>
    cd assignment-2
    
+**npm** i cors dotenv express  mongoose "ts-node-dev zod...
+
+
+  ###Folder Structure
+├── src
+│   ├── bike
+│   │   ├── bike.controller.ts
+│   │   ├── bike.model.ts
+│   │   ├── bike.routes.ts
+│   │   ├── bike.services.ts
+│   │   ├── bike.zod.validation.ts
+│   ├── order
+│   │   ├── order.controller.ts
+│   │   ├── order.model.ts
+│   │   ├── order.routes.ts
+│   │   ├── order.services.ts
+│   │   ├── order.zod.validation.ts
+│   ├── app.ts
+│   ├── server.ts
+├── .eslintrc.js
+├── .prettierrc
+├── tsconfig.json
+└── package.json
+ 
