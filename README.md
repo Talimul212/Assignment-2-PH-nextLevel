@@ -54,9 +54,9 @@ Before running the project, make sure you have the following installed:
    npm i cors dotenv express  mongoose "ts-node-dev zod...
    
 ### Bike API:
-    **GET**,     **POST**= https://assignment-2-nine-omega.vercel.app/api/bike
-    **DELETE**,**UPDATE**= https://assignment-2-nine-omega.vercel.app/api/bike/:bikeId
-    **Query GET**        = https://assignment-2-nine-omega.vercel.app/api/bike?searchTerm=name or brand or category
+    **GET**,     **POST**= https://assignment-2-nine-omega.vercel.app/api/products
+    **DELETE**,**UPDATE**= https://assignment-2-nine-omega.vercel.app/api/products/:productsId
+    **Query GET**        = https://assignment-2-nine-omega.vercel.app/api/products?searchTerm=name or brand or category
 
 
 ### Orders API:
